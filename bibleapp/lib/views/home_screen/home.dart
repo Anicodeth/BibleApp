@@ -71,9 +71,9 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           // TODO: This contents will be screens
-          body: const TabBarView(
+          body: TabBarView(
             children: [
-              Center(child: Text("Bible")),
+              BiblePage(),
               Center(child: Text("Search")),
               Center(child: Text("Plans")),
               Center(child: Text("My Notes")),
