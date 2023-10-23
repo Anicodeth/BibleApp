@@ -71,12 +71,12 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           // TODO: This contents will be screens
-          body: TabBarView(
+          body: const TabBarView(
             children: [
-              Text("Bible"),
-              Text("Search"),
-              Text("Plans"),
-              Text("My Notes"),
+              Center(child: Text("Bible")),
+              Center(child: Text("Search")),
+              Center(child: Text("Plans")),
+              Center(child: Text("My Notes")),
             ],
           ),
         ),
