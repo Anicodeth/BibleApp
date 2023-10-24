@@ -12,12 +12,17 @@ final class BiblesLoadedState extends BibleReadingState {
 
 final class ChaptersLoadedState extends BibleReadingState {
   final List<ChapterModel> chapters;
-  ChaptersLoadedState(this.chapters);
+  final String bibleName;
+  ChaptersLoadedState(this.chapters, this.bibleName);
 }
 
 final class VersesLoadedState extends BibleReadingState {
   final List<VerseModel> verses;
-  VersesLoadedState(this.verses);
+  final String bibleName;
+  final String chapterName;
+  final List<ChapterModel> chapters;
+  VersesLoadedState(
+      this.verses, this.bibleName, this.chapterName, this.chapters);
 }
 
 final class BibleReadingErrorState extends BibleReadingState {

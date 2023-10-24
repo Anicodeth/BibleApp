@@ -9,12 +9,14 @@ class BiblesLoaded extends BibleReadingEvent {
 
 class ChaptersLoaded extends BibleReadingEvent {
   final List<ChapterModel> chapters;
-
-  ChaptersLoaded(this.chapters);
+  final String bibleName;
+  ChaptersLoaded(this.chapters, this.bibleName);
 }
 
 class VersesLoaded extends BibleReadingEvent {
   final List<VerseModel> verses;
-
-  VersesLoaded(this.verses);
+  final String bibleName;
+  final String chapterName;
+  final List<ChapterModel> chapters;
+  VersesLoaded(this.verses, this.bibleName, this.chapterName, this.chapters);
 }
