@@ -1,5 +1,8 @@
 import 'package:bibleapp/views/bible_screen/bible_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../controllers/bible_reading_controller/bloc/bible_reading_bloc.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,7 +20,7 @@ class _HomePageState extends State<HomePage> {
         child: Scaffold(
           bottomNavigationBar: Container(
             color: Colors.white,
-            child: const BottomAppBar(
+            child: BottomAppBar(
               shadowColor: Colors.black,
               child: TabBar(
                 indicatorColor: Colors.black,
@@ -26,7 +29,14 @@ class _HomePageState extends State<HomePage> {
                   Tab(
                       icon: Column(
                     children: [
-                      Icon(Icons.menu_book_outlined, color: Colors.black),
+                      GestureDetector(
+                        child:
+                            Icon(Icons.menu_book_outlined, color: Colors.black),
+                        onTap: () {
+                          BlocProvider.of<BibleReadingBloc>(context)
+                              .add(BiblesLoaded());
+                        },
+                      ),
                       Text(
                         "Bible",
                         style: TextStyle(color: Colors.black),

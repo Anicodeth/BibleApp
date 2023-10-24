@@ -24,34 +24,6 @@ class VerseHeader extends StatelessWidget {
         children: [
           Row(
             children: [
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 0, horizontal: 4),
-                child: Row(
-                  children: [
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        padding: MaterialStateProperty.all(
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 15)),
-                        backgroundColor: MaterialStateProperty.all(
-                            Color.fromARGB(255, 245, 242, 242)),
-                        foregroundColor:
-                            MaterialStateProperty.all(Colors.black),
-                      ),
-                      onPressed: () {
-                        BlocProvider.of<BibleReadingBloc>(context)
-                            .add(BiblesLoaded());
-                      },
-                      child: Text(
-                        selectedBible,
-                        style: TextStyle(fontSize: 17),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                width: 20,
-              ),
               ElevatedButton(
                 style: ButtonStyle(
                   padding: MaterialStateProperty.all(
@@ -69,6 +41,19 @@ class VerseHeader extends StatelessWidget {
                   style: TextStyle(fontSize: 17),
                 ),
               ),
+              SizedBox(
+                width: 15,
+              ),
+              Row(
+                children: [
+                  Text(
+                    selectedBible,
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+                  ),
+                  IconButton(
+                      onPressed: () {}, icon: Icon(Icons.arrow_drop_down))
+                ],
+              )
             ],
           ),
           IconButton(

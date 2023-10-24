@@ -20,30 +20,11 @@ class ChapterHeader extends StatelessWidget {
           Row(
             children: [
               Container(
-                padding: EdgeInsets.symmetric(vertical: 0, horizontal: 4),
-                child: Row(
-                  children: [
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        padding: MaterialStateProperty.all(
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 15)),
-                        backgroundColor: MaterialStateProperty.all(
-                            Color.fromARGB(255, 245, 242, 242)),
-                        foregroundColor:
-                            MaterialStateProperty.all(Colors.black),
-                      ),
-                      onPressed: () {
-                        BlocProvider.of<BibleReadingBloc>(context)
-                            .add(BiblesLoaded());
-                      },
-                      child: Text(
-                        selectedBible,
-                        style: TextStyle(fontSize: 17),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+                  padding: EdgeInsets.symmetric(vertical: 0, horizontal: 4),
+                  child: Text(
+                    "Chapters",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  )),
             ],
           ),
           IconButton(
