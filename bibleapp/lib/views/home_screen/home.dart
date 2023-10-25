@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../controllers/bible_reading_controller/bloc/bible_reading_bloc.dart';
+import '../plan_screen/plan_view.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -85,7 +86,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               BiblePage(),
               Center(child: Text("Search")),
-              Center(child: Text("Plans")),
+              PlanView(),
               Center(child: Text("My Notes")),
             ],
           ),

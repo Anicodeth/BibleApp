@@ -41,6 +41,8 @@ dependencies:
   flutter_riverpod:
   flutter_bloc:
   bloc:
+  multiselect: ^0.1.0
+  percent_indicator: ^4.2.3
 
 dev_dependencies:
   flutter_test:
