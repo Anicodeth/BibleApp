@@ -1,11 +1,8 @@
 import 'package:bibleapp/views/bible_screen/bible_page.dart';
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-=======
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../controllers/bible_reading_controller/bloc/bible_reading_bloc.dart';
->>>>>>> origin/shamil
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -23,11 +20,7 @@ class _HomePageState extends State<HomePage> {
         child: Scaffold(
           bottomNavigationBar: Container(
             color: Colors.white,
-<<<<<<< HEAD
-            child: const BottomAppBar(
-=======
             child: BottomAppBar(
->>>>>>> origin/shamil
               shadowColor: Colors.black,
               child: TabBar(
                 indicatorColor: Colors.black,
@@ -36,9 +29,6 @@ class _HomePageState extends State<HomePage> {
                   Tab(
                       icon: Column(
                     children: [
-<<<<<<< HEAD
-                      Icon(Icons.menu_book_outlined, color: Colors.black),
-=======
                       GestureDetector(
                         child:
                             Icon(Icons.menu_book_outlined, color: Colors.black),
@@ -47,7 +37,6 @@ class _HomePageState extends State<HomePage> {
                               .add(BiblesLoaded());
                         },
                       ),
->>>>>>> origin/shamil
                       Text(
                         "Bible",
                         style: TextStyle(color: Colors.black),
@@ -92,15 +81,9 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           // TODO: This contents will be screens
-<<<<<<< HEAD
-          body: const TabBarView(
-            children: [
-              Center(child: Text("Bible")),
-=======
           body: TabBarView(
             children: [
               BiblePage(),
->>>>>>> origin/shamil
               Center(child: Text("Search")),
               Center(child: Text("Plans")),
               Center(child: Text("My Notes")),

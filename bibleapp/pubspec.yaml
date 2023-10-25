@@ -39,6 +39,8 @@ dependencies:
   sqflite_common_ffi: ^2.3.0+2
   device_preview:
   flutter_riverpod:
+  flutter_bloc:
+  bloc:
 
 dev_dependencies:
   flutter_test:
