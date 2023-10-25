@@ -18,10 +18,12 @@ class PlanDetailView extends StatelessWidget {
               color: Colors.black,
             ),
           ),
-          title: Text("plan detail view",
-          style: TextStyle(
-            color: Colors.black,
-          ),),
+          title: Text(
+            "plan detail view",
+            style: TextStyle(
+              color: Colors.black,
+            ),
+          ),
         ),
         body: Padding(
           padding: const EdgeInsets.only(
@@ -96,28 +98,9 @@ class PlanDetailView extends StatelessWidget {
                       ],
                     ),
                     Expanded(
-                      child: ListView(
-                        children: [
-                          PlanDayCard(),
-                          PlanDayCard(),
-                          PlanDayCard(),
-                          PlanDayCard(),
-                          PlanDayCard(),
-                          PlanDayCard(),
-                          PlanDayCard(),
-                          PlanDayCard(),
-                          PlanDayCard(),
-                          PlanDayCard(),
-                          PlanDayCard(),
-                          PlanDayCard(),
-                          PlanDayCard(),
-                          PlanDayCard(),
-                          PlanDayCard(),
-                          PlanDayCard(),
-                          PlanDayCard(),
-                          PlanDayCard(),
-                          PlanDayCard(),
-                        ],
+                      child: ListView.builder(
+                        itemCount: 20,
+                        itemBuilder: (context, index) => const PlanDayCard(),
                       ),
                     ),
                   ],
@@ -147,7 +130,10 @@ class PlanDayCard extends StatelessWidget {
           children: [
             Text("Day 4"),
             Text("James 1:1 - 1:8"),
-            Icon(Icons.book),
+            Icon(
+              Icons.menu_book,
+              color: Colors.blue,
+            ),
           ],
         ),
       ),
