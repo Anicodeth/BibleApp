@@ -18,7 +18,7 @@ class VerseHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(vertical: 8, horizontal: 25),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 25),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -27,7 +27,7 @@ class VerseHeader extends StatelessWidget {
               ElevatedButton(
                 style: ButtonStyle(
                   padding: MaterialStateProperty.all(
-                      EdgeInsets.symmetric(horizontal: 20, vertical: 15)),
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 15)),
                   backgroundColor: MaterialStateProperty.all(
                       Color.fromARGB(255, 245, 242, 242)),
                   foregroundColor: MaterialStateProperty.all(Colors.black),
@@ -38,27 +38,27 @@ class VerseHeader extends StatelessWidget {
                 },
                 child: Text(
                   selectedChapter,
-                  style: TextStyle(fontSize: 17),
+                  style: const TextStyle(fontSize: 17),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 15,
               ),
               Row(
                 children: [
                   Text(
                     selectedBible,
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+                    style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
                   ),
                   IconButton(
-                      onPressed: () {}, icon: Icon(Icons.arrow_drop_down))
+                      onPressed: () {}, icon: const Icon(Icons.arrow_drop_down))
                 ],
               )
             ],
           ),
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.more_vert),
+            icon: const Icon(Icons.more_vert),
           ),
         ],
       ),

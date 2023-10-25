@@ -10,15 +10,15 @@ class BibleHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(vertical: 8, horizontal: 25),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 25),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
               Container(
-                padding: EdgeInsets.symmetric(vertical: 0, horizontal: 4),
-                child: Text(
+                padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 4),
+                child: const Text(
                   "Holy Bible",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                 ),

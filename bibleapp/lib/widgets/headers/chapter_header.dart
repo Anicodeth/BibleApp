@@ -13,15 +13,15 @@ class ChapterHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(vertical: 8, horizontal: 25),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 25),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
               Container(
-                  padding: EdgeInsets.symmetric(vertical: 0, horizontal: 4),
-                  child: Text(
+                  padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 4),
+                  child: const Text(
                     "Chapters",
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   )),
@@ -29,7 +29,7 @@ class ChapterHeader extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.more_vert),
+            icon: const Icon(Icons.more_vert),
           ),
         ],
       ),

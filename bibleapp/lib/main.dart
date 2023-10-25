@@ -18,7 +18,7 @@ void main() {
             BlocProvider<BibleReadingBloc>(
                 create: (context) => BibleReadingBloc()),
           ],
-          child: MaterialApp(
+          child: const MaterialApp(
             home: HomePage(),
           ),
         ),
