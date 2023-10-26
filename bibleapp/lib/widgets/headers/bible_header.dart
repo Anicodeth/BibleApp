@@ -20,7 +20,10 @@ class BibleHeader extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 4),
                 child: const Text(
                   "Holy Bible",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                  style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+            ),
                 ),
               ),
             ],
