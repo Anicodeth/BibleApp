@@ -22,10 +22,19 @@ class PlanView extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
+          elevation: 0,
           title: const ListTile(
-            title: Text("My Plans"),
+            title: Text("My Plans",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+            ),
+            
+            
+            ),
             leading: Icon(
               Icons.calendar_today,
+              color: Color(0xFF3498DB),
             ),
           ),
         ),
@@ -38,11 +47,11 @@ class PlanView extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => PlanDetailView(),
+                    builder: (context) => const PlanDetailView(),
                   ),
                 );
               },
-              child: PlanTaskCard(),
+              child: const PlanTaskCard(),
             ),
           ),
         ),
@@ -52,60 +61,60 @@ class PlanView extends StatelessWidget {
             onPressed: () {
               showModalBottomSheet<void>(
                 context: context,
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.vertical(
                     top: Radius.circular(25.0),
                   ),
                 ),
                 builder: (BuildContext context) {
                   return Padding(
-                    padding: EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20),
                     child: ListView(
                       children: [
-                        Center(
+                        const Center(
                           child: Text(
                             "Create a new plan",
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 17,
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         CustomizeTextField(
                           textEditingController: titleController,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         CustomizeDropDownMenu(
                           label: "Books",
                           dropDown: booksWidget,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         CustomizeDropDownMenu(
                           label: "frequency",
                           dropDown: frequencyWidget,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         CustomizeDateField(
                           textEditingController: startDateController,
                           label: "Start Date",
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         CustomizeDateField(
                           textEditingController: endDateController,
                           label: "End Date",
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Row(
@@ -116,10 +125,10 @@ class PlanView extends StatelessWidget {
                                 onPressed: () {
                                   Navigator.pop(context);
                                 },
-                                child: Text("Cancel"),
+                                child: const Text("Cancel"),
                               ),
                             ),
-                            Expanded(
+                            const Expanded(
                               flex: 4,
                               child: SizedBox(),
                             ),
@@ -130,7 +139,7 @@ class PlanView extends StatelessWidget {
                                   print(booksWidget.selectedBooks);
                                   print(frequencyWidget.selected);
                                 },
-                                child: Text("Done"),
+                                child: const Text("Done"),
                               ),
                             )
                           ],
@@ -141,9 +150,9 @@ class PlanView extends StatelessWidget {
                 },
               );
             },
-            label: Text('Create Plan'),
-            icon: Icon(Icons.add),
-            backgroundColor: Color(0xFF3498DB),
+            label: const Text('Create Plan'),
+            icon: const Icon(Icons.add),
+            backgroundColor: const Color(0xFF3498DB),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
             ),
