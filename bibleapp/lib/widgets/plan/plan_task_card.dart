@@ -1,3 +1,4 @@
+import 'package:bibleapp/widgets/note/tag_card.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
@@ -24,12 +25,16 @@ class PlanTaskCard extends StatelessWidget {
                       Text("you have some text to make"),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          booksRepr(),
-                          booksRepr(),
-                          booksRepr(),
-                          booksRepr(),
+                          TagCard(
+                            tageName: "book",
+                          ),
+                          TagCard(
+                            tageName: "book",
+                          ),
+                          TagCard(
+                            tageName: "book",
+                          ),
                         ],
                       )
                     ],
@@ -50,25 +55,6 @@ class PlanTaskCard extends StatelessWidget {
           height: 12,
         )
       ],
-    );
-  }
-}
-
-class booksRepr extends StatelessWidget {
-  const booksRepr({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.grey,
-        borderRadius: BorderRadius.circular(6),
-      ),
-      child: Text("book"),
-      padding: EdgeInsets.all(3),
-      margin: EdgeInsets.only(right: 3),
     );
   }
 }
