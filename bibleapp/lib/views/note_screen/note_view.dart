@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path/path.dart';
-
 import '../../controllers/note_screen_controller/bloc/selector_book_or_note_bloc.dart';
 import 'note_bookmark_view.dart';
 import 'note_note_view.dart';
@@ -14,14 +13,17 @@ class NoteView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
-            leading: Icon(
+            elevation: 0,
+            leading: const Icon(
               Icons.bookmark,
               color: Colors.blue,
             ),
-            title: Text(
+            title: const Text(
               "My Notes",
               style: TextStyle(
                 color: Colors.black,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
             ),
             backgroundColor: Colors.white,
@@ -59,7 +61,7 @@ class NoteView extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Expanded(
+                        const Expanded(
                           flex: 1,
                           child: SizedBox(),
                         ),
@@ -90,13 +92,13 @@ class NoteView extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Expanded(
                       child: state.whichOne
-                          ? NoteBookmark()
-                          : NoteNote(),
+                          ? const NoteBookmark()
+                          : const NoteNote(),
                     ),
                   ],
                 ),
