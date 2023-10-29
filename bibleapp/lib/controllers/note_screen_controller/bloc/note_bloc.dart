@@ -1,26 +1,32 @@
 import 'package:bibleapp/models/note/note.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:hive/hive.dart';
 
 part 'note_event.dart';
 part 'note_state.dart';
 
 class NoteBloc extends Bloc<NoteEvent, NoteState> {
-  NoteBloc()
+
+  final Box<Note> noteBox;
+
+  NoteBloc({required this.noteBox})
       : super(
           NoteInitial(
-            note: [
-              Note(
-                  title: "Jhon 1:1",
-                  tag: "NASB",
-                  note:
-                      "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.",
-                  date: "today at 4:55"),
-            ],
+            note: noteBox.values.toList()
           ),
         ) {
-    on<NoteEvent>((event, emit) {
-      // TODO: implement event handler
+    on<NoteEvent>((event, emit) async {
+      
+      if(event is AddNote){
+
+        await noteBox.add(event.note);
+        List<Note> notes = noteBox.values.toList();
+
+        emit(NoteInitial(note: notes));
+
+      }
+
     });
   }
 }

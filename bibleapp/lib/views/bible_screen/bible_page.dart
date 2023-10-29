@@ -1,5 +1,6 @@
 import 'package:bibleapp/models/bible/bible.dart';
-import 'package:bibleapp/widgets/bible/bibles.dart';
+import 'package:bibleapp/widgets/bible/bible_list.dart';
+import 'package:bibleapp/widgets/bible/section.dart';
 import 'package:bibleapp/widgets/chapter/chapters.dart';
 import 'package:bibleapp/widgets/verse/verse.dart';
 import 'package:flutter/material.dart';
@@ -36,10 +37,10 @@ class getContents extends StatelessWidget {
   Widget build(BuildContext context) {
     if (state is BiblesLoadedState) {
       return Bibles(bibles: state.bibles);
-    } else if (state is ChaptersLoadedState) {
-      return Chapters(
-        chapters: state.chapters,
-        selectedBible: state.bibleName,
+    } else if (state is SectionsLoadedState) {
+      return SectionList(
+        sections: state.sections,
+        bibleName: state.bibleName,
       );
     } else if (state is VersesLoadedState) {
       return Verses(

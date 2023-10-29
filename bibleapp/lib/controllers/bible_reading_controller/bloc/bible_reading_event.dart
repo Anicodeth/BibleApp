@@ -7,6 +7,12 @@ class BiblesLoaded extends BibleReadingEvent {
   BiblesLoaded();
 }
 
+class SectionsLoaded extends BibleReadingEvent {
+  final List<SectionModel> sections;
+  final String bibleName;
+  SectionsLoaded(this.sections, this.bibleName);
+}
+
 class ChaptersLoaded extends BibleReadingEvent {
   final List<ChapterModel> chapters;
   final String bibleName;

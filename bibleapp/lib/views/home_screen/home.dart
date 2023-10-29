@@ -88,7 +88,7 @@ class _HomePageState extends State<HomePage> {
               BiblePage(),
               const Center(child: Text("Search")),
               PlanView(),
-              const NoteView(),
+              NoteView(),
             ],
           ),
         ),

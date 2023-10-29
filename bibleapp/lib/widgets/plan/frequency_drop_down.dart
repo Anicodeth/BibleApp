@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class FrequencyDropDown extends StatefulWidget {
-  String? selected = "Everyday";
+  String selected = "Everyday";
   FrequencyDropDown({
     super.key,
   });
@@ -20,10 +20,10 @@ class _FrequencyDropDownState extends State<FrequencyDropDown> {
         isExpanded: true,
         onChanged: (value) {
           setState(() {
-            widget.selected = value;
+            widget.selected = value!;
           });
         },
-        items: ["Everyday", "Sometimes", "usually"]
+        items: ["Everyday", "Week", "Three days"]
             .map(
               (e) => DropdownMenuItem<String>(
                 value: e,

@@ -1,3 +1,6 @@
+import 'package:bibleapp/controllers/note_screen_controller/bloc/note_bloc.dart';
+import 'package:bibleapp/models/note/note.dart';
+import 'package:bibleapp/widgets/plan/customize_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path/path.dart';
@@ -6,8 +9,13 @@ import 'note_bookmark_view.dart';
 import 'note_note_view.dart';
 
 class NoteView extends StatelessWidget {
-  const NoteView({super.key});
+  
+  final TextEditingController verseEditingControler = TextEditingController();
+  final TextEditingController noteEditingControler = TextEditingController();
+  final TextEditingController versionEditingControler = TextEditingController();
 
+  NoteView({super.key});
+  
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -28,6 +36,104 @@ class NoteView extends StatelessWidget {
             ),
             backgroundColor: Colors.white,
           ),
+
+          floatingActionButton: Container(
+            decoration: BoxDecoration(color: Colors.blue, shape: BoxShape.circle),
+            child: IconButton(
+              icon: Icon(Icons.add, color: Colors.white),
+              onPressed: ()=>{
+                showModalBottomSheet<void>(
+                  context: context,
+                  isScrollControlled: false,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(25.0),
+                    ),
+                  ),
+                  builder: (BuildContext context) {
+                    return Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: ListView(
+          
+                        children: [
+                          const Center(
+                            child: Text(
+                              "Make a new note",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          CustomizeTextField(
+                            textEditingController: verseEditingControler,
+                            title: "Verse",
+                            hintText: "Verse name...",
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          CustomizeTextField(
+                            textEditingController: versionEditingControler,
+                            title: "Version Non",
+                            hintText: "Bible version...",
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          CustomizeTextField(
+                            textEditingController: noteEditingControler,
+                            title: "Note",
+                            hintText: "Your note...",
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                flex: 3,
+                                child: TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text("Cancel"),
+                                ),
+                              ),
+                              const Expanded(
+                                flex: 4,
+                                child: SizedBox(),
+                              ),
+                              Expanded(
+                                flex: 3,
+                                child: ElevatedButton(
+                                  onPressed: () {
+          
+                                    BlocProvider.of<NoteBloc>(context).add(
+                                      AddNote(Note(
+                                        title: verseEditingControler.text, 
+                                        tag: versionEditingControler.text, 
+                                        date: DateTime.timestamp(),
+                                        note: noteEditingControler.text,
+                                        ),),);
+          
+                                    // print(booksWidget.selectedBooks);
+                                    // print(frequencyWidget.selected);
+                                  },
+                                  child: const Text("Done"),
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                )
+              },
+              ),
+          ),
+
           body: BlocBuilder<SelectorBookOrNoteBloc, SelectorBookOrNoteState>(
             builder: (Context, state) {
               return Padding(

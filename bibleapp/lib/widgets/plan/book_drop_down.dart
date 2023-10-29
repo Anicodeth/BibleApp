@@ -16,7 +16,7 @@ class _book_drop_downState extends State<book_drop_down> {
     return Container(
       color: Color(0xFFFAFAFA),
       child: DropDownMultiSelect(
-        options: ["Everyday", "Sometimes", "usually"],
+        options: ["Joh", "Gen", "Mat"],
         selectedValues: widget.selectedBooks,
         onChanged: (value) {
           setState(() {

@@ -3,6 +3,7 @@ import 'package:meta/meta.dart';
 
 import '../../../models/bible/bible.dart';
 import '../../../models/chapter/chapter.dart';
+import 'package:bibleapp/models/section/section.dart';
 import '../../../models/verse/verse.dart';
 
 part 'bible_reading_event.dart';
@@ -10,7 +11,7 @@ part 'bible_reading_state.dart';
 
 class BibleReadingBloc extends Bloc<BibleReadingEvent, BibleReadingState> {
   BibleReadingBloc() : super(BibleReadingInitial()) {
-    List<VerseModel> verses = [
+    List<VerseModel> verses= [
       VerseModel(
           number: "1",
           text: "In the beginning God created the heaven and the earth."),
@@ -58,37 +59,76 @@ class BibleReadingBloc extends Bloc<BibleReadingEvent, BibleReadingState> {
           text:
               "And the earth brought forth grass, and herb yielding seed after his kind, and the tree yielding fruit, whose seed was in itself, after his kind: and God saw that it was good."),
     ];
+
+    final List<SectionModel> newTestamentSections = 
+    [
+      SectionModel(name: "Matthew", chapters: 28, link: "matthew"),
+      SectionModel(name: "Mark", chapters: 16, link: "mark"),
+      SectionModel(name: "Luke", chapters: 24, link: "luke"),
+      SectionModel(name: "John", chapters: 21, link: "john"),
+      SectionModel(name: "Acts", chapters: 28, link: "acts"),
+      SectionModel(name: "Romans", chapters: 16, link: "romans"),
+      SectionModel(name: "1 Corinthians", chapters: 16, link: "1corinthians"),
+      SectionModel(name: "2 Corinthians", chapters: 13, link: "2corinthians"),
+      SectionModel(name: "Galatians", chapters: 6, link: "galatians"),
+      SectionModel(name: "Ephesians", chapters: 6, link: "ephesians"),
+      SectionModel(name: "Philippians", chapters: 4, link: "philippians"),
+      SectionModel(name: "Colossians", chapters: 4, link: "colossians"),
+      SectionModel(name: "1 Thessalonians", chapters: 5, link: "1thessalonians"),
+      SectionModel(name: "2 Thessalonians", chapters: 3, link: "2thessalonians"),
+      SectionModel(name: "1 Timothy", chapters: 6, link: "1timothy"),
+      SectionModel(name: "2 Timothy", chapters: 4, link: "2timothy"),
+      SectionModel(name: "Titus", chapters: 3, link: "titus"),
+      SectionModel(name: "Philemon", chapters: 1, link: "philemon"),
+      SectionModel(name: "Hebrews", chapters: 13, link: "hebrews"),
+      SectionModel(name: "James", chapters: 5, link: "james"),
+      SectionModel(name: "1 Peter", chapters: 5, link: "1peter"),
+      SectionModel(name: "2 Peter", chapters: 3, link: "2peter"),
+      SectionModel(name: "1 John", chapters: 5, link: "1john"),
+      SectionModel(name: "2 John", chapters: 1, link: "2john"),
+      SectionModel(name: "3 John", chapters: 1, link: "3john"),
+      SectionModel(name: "Jude", chapters: 1, link: "jude"),
+      SectionModel(name: "Revelation", chapters: 22, link: "revelation"),
+    ];
+
     on<BibleReadingEvent>((event, emit) {
       List<BibleModel> bibles = [
         BibleModel(
-            name: "Exodus",
-            chapters: [ChapterModel(name: "Genesis", verses: verses)]),
+            name: "New Testament",
+            sections: newTestamentSections),
         BibleModel(
             name: "Genesis",
-            chapters: [ChapterModel(name: "Genesis", verses: verses)]),
+            sections: newTestamentSections),
         BibleModel(
-            name: "Leviticus",
-            chapters: [ChapterModel(name: "Genesis", verses: verses)]),
+          name: "Old Testament",
+          sections: newTestamentSections),
         BibleModel(
-            name: "Numbers",
-            chapters: [ChapterModel(name: "Genesis", verses: verses)]),
+          name: "Gospels",
+          sections: [
+            SectionModel(name: "Matthew", chapters: 28, link: "matthew"),
+            SectionModel(name: "Mark", chapters: 16, link: "mark"),
+            SectionModel(name: "Luke", chapters: 24, link: "luke"),
+            SectionModel(name: "John", chapters: 21, link: "john"),
+          ],
+        ),
         BibleModel(
-            name: "Deuteronomy",
-            chapters: [ChapterModel(name: "Genesis", verses: verses)]),
-        BibleModel(
-            name: "Joshua",
-            chapters: [ChapterModel(name: "Genesis", verses: verses)]),
+          name: "Pauline Epistles",
+          sections: [
+            SectionModel(name: "Romans", chapters: 16, link: "romans"),
+            SectionModel(name: "1 Corinthians", chapters: 16, link: "1corinthians"),
+            SectionModel(name: "2 Corinthians", chapters: 13, link: "2corinthians"),
+          ],
+        ),
       ];
 
       // TODO: implement event handler
 
       if (event is BiblesLoaded) {
         emit(BiblesLoadedState(bibles));
+      } else if (event is SectionsLoaded) {
+        emit(SectionsLoadedState(event.sections, event.bibleName));
       } else if (event is ChaptersLoaded) {
         emit(ChaptersLoadedState(event.chapters, event.bibleName));
-      } else if (event is VersesLoaded) {
-        emit(VersesLoadedState(
-            event.verses, event.bibleName, event.chapterName, event.chapters));
       }
     });
   }
