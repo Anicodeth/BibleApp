@@ -1,9 +1,13 @@
+import 'package:bibleapp/models/plan/plan.dart';
 import 'package:bibleapp/widgets/note/tag_card.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class PlanTaskCard extends StatelessWidget {
-  const PlanTaskCard({super.key});
+
+  final Plan plan;
+
+  const PlanTaskCard({super.key, required this.plan});
 
   @override
   Widget build(BuildContext context) {
@@ -16,26 +20,23 @@ class PlanTaskCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const SizedBox(
+                SizedBox(
                   height: 90,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("you have some text to make"),
-                      Text("you have some text to make"),
+                      Text(
+                        plan.title,
+                        style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+                        ),
+                      Text(
+                        '${plan.endDate.day - plan.startDate.day} Days, ${plan.frequency}',
+                        style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal, color: Color.fromARGB(255, 95, 95, 95)),
+                      ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          TagCard(
-                            tageName: "book",
-                          ),
-                          TagCard(
-                            tageName: "book",
-                          ),
-                          TagCard(
-                            tageName: "book",
-                          ),
-                        ],
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: plan.books.map((item) => TagCard(tageName: item)).toList(),
                       )
                     ],
                   ),
@@ -43,8 +44,8 @@ class PlanTaskCard extends StatelessWidget {
                 CircularPercentIndicator(
                   radius: 40.0,
                   lineWidth: 8.0,
-                  percent: 0.6,
-                  center: const Text("60%"),
+                  percent: plan.progress,
+                  center: Text('${plan.progress * 100}%'),
                   progressColor: Colors.green,
                 )
               ],

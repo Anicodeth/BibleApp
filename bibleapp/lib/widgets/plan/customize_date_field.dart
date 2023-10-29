@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomizeDateField extends StatelessWidget {
-  final TextEditingController textEditingController;
+  final List<DateTime> textEditingController;
   final String label;
   const CustomizeDateField({super.key, required this.textEditingController, required this.label});
 
@@ -25,7 +25,6 @@ class CustomizeDateField extends StatelessWidget {
             Expanded(
               child: TextField(
                 enabled: false,
-                controller: textEditingController,
                 decoration: const InputDecoration(
                   filled: true, // Set filled to true
                   fillColor: Color(0xFFFAFAFA),
@@ -54,8 +53,8 @@ class CustomizeDateField extends StatelessWidget {
                   firstDate: DateTime.now(),
                   lastDate: DateTime(2024),
                 ).then((value) => {
-                      textEditingController.text =
-                          value.toString().substring(0, 10)
+                      textEditingController[0] =
+                          value!
                     });
               },
             ),

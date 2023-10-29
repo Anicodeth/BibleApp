@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 
 class CustomizeTextField extends StatelessWidget {
+  
+  final String? title;
+  final String? hintText;
   final TextEditingController textEditingController;
-  const CustomizeTextField({super.key, required this.textEditingController});
+
+  const CustomizeTextField({super.key, required this.textEditingController, this.title, this.hintText});
 
   @override
   Widget build(BuildContext context) {
@@ -11,23 +15,24 @@ class CustomizeTextField extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       child: Container(
         padding: const EdgeInsets.only(top: 8, bottom: 8, right: 8, left: 16),
-        child: const Row(
+        child: Row(
           children: [
             Text(
-              "Title",
-              style: TextStyle(
+              title != null ? title!: "title",
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
               ),
             ),
-            SizedBox(width: 8), // Add some spacing between text and TextField
+            const SizedBox(width: 8), // Add some spacing between text and TextField
             Expanded(
               child: TextField(
+                controller: textEditingController,
                 decoration: InputDecoration(
                   filled: true, // Set filled to true
                   fillColor: Color(0xFFFAFAFA),
                   border: InputBorder.none, // Remove TextField border
-                  hintText: 'weekly devoation',
+                  hintText: hintText != null ? hintText! : 'weekly devoation',
                 ),
               ),
             ),

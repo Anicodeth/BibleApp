@@ -8,6 +8,7 @@ class TagCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(5),
+      margin: EdgeInsets.symmetric(horizontal: 3),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
         color: Color(0xFFEFEFEF),

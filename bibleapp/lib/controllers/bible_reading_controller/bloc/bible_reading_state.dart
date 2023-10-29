@@ -10,6 +10,12 @@ final class BiblesLoadedState extends BibleReadingState {
   BiblesLoadedState(this.bibles);
 }
 
+final class SectionsLoadedState extends BibleReadingState {
+  final List<SectionModel> sections;
+  final String bibleName;
+  SectionsLoadedState(this.sections, this.bibleName);
+}
+
 final class ChaptersLoadedState extends BibleReadingState {
   final List<ChapterModel> chapters;
   final String bibleName;

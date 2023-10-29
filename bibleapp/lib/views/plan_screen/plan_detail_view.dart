@@ -87,14 +87,26 @@ class PlanDetailView extends StatelessWidget {
                 ),
               ),
               Expanded(
-                flex: 16,
+                flex: 10,
                 child: Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Reading"),
-                        Text("Reading"),
+                        Text(
+                          "Reading Sessions",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18
+                            ),
+                        ),
+                        Text(
+                          "27 sessions left",
+                          style: TextStyle(
+                            fontWeight: FontWeight.normal,
+                            fontSize: 14
+                            ),
+                        ),
                       ],
                     ),
                     Expanded(

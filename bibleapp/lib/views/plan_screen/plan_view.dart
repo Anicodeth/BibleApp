@@ -1,3 +1,6 @@
+import 'package:bibleapp/controllers/note_screen_controller/bloc/note_bloc.dart';
+import 'package:bibleapp/controllers/plan_screen_controller/bloc/plan_bloc.dart';
+import 'package:bibleapp/models/plan/plan.dart';
 import 'package:bibleapp/views/plan_screen/plan_detail_view.dart';
 import 'package:bibleapp/widgets/plan/book_drop_down.dart';
 import 'package:bibleapp/widgets/plan/customize_date_field.dart';
@@ -6,11 +9,12 @@ import 'package:bibleapp/widgets/plan/customize_text_field.dart';
 import 'package:bibleapp/widgets/plan/frequency_drop_down.dart';
 import 'package:bibleapp/widgets/plan/plan_task_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PlanView extends StatelessWidget {
   final TextEditingController titleController = TextEditingController();
-  final TextEditingController startDateController = TextEditingController();
-  final TextEditingController endDateController = TextEditingController();
+  final List<DateTime> startDateController = [DateTime.now()];
+  final List<DateTime> endDateController = [DateTime.now()];
   final book_drop_down booksWidget = book_drop_down();
   final FrequencyDropDown frequencyWidget = FrequencyDropDown();
 
@@ -24,13 +28,12 @@ class PlanView extends StatelessWidget {
           backgroundColor: Colors.white,
           elevation: 0,
           title: const ListTile(
-            title: Text("My Plans",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),
-            
-            
+            title: Text(
+              "My Plans",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
             ),
             leading: Icon(
               Icons.calendar_today,
@@ -38,22 +41,39 @@ class PlanView extends StatelessWidget {
             ),
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: ListView.builder(
-            itemCount: 10,
-            itemBuilder: (context, index) => GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const PlanDetailView(),
-                  ),
+        body: BlocBuilder<PlanBloc, PlanState>(
+          builder: (context, state){
+            if (state is PlansLoaded){
+
+              if (state.plans.length == 0){
+                return Center(
+                  child: Text("No Plans Created"),
                 );
-              },
-              child: const PlanTaskCard(),
-            ),
-          ),
+              }
+
+              return Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: ListView.builder(
+                itemCount: state.plans.length,
+                itemBuilder: (context, index) => GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const PlanDetailView(),
+                      ),
+                    );
+                  },
+                  child: PlanTaskCard(plan: state.plans[index]),
+                ),
+              ),
+            );
+            }else{
+              return Center(
+                child: Text("Error while loading data"),
+              );
+            }
+          },
         ),
         floatingActionButton: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -136,8 +156,19 @@ class PlanView extends StatelessWidget {
                               flex: 3,
                               child: ElevatedButton(
                                 onPressed: () {
-                                  print(booksWidget.selectedBooks);
-                                  print(frequencyWidget.selected);
+                                  print(titleController.text);
+                                  print(startDateController[0]);
+
+                                  BlocProvider.of<PlanBloc>(context).add(
+                                    AddPlan(plan: Plan(
+                                      title: titleController.text,
+                                      books: booksWidget.selectedBooks,
+                                      frequency: frequencyWidget.selected,
+                                      startDate: startDateController[0],
+                                      endDate: endDateController[0],
+                                      progress: 0,
+                                      ),),);
+
                                 },
                                 child: const Text("Done"),
                               ),

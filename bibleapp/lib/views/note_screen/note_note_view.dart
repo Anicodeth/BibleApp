@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../widgets/note/note_card.dart';
 
 class NoteNote extends StatelessWidget {
+  
   const NoteNote({super.key});
 
   @override
@@ -12,12 +13,12 @@ class NoteNote extends StatelessWidget {
     return BlocBuilder<NoteBloc, NoteState>(builder: (context, state) {
       if (state.note.isEmpty) {
         return Center(
-          child: Text("No bookmarks added!"),
+          child: Text("No Notes found!"),
         );
       }
       return ListView.builder(
-        itemCount: 10 * state.note.length,
-        itemBuilder: (context, index) => NoteCard(data: state.note[0]),
+        itemCount: state.note.length,
+        itemBuilder: (context, index) => NoteCard(data: state.note[index]),
       );
     });
   }
