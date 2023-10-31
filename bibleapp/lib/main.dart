@@ -1,6 +1,9 @@
+import 'package:bibleapp/controllers/bible_reading_controller/pdf_reader_bloc/pdf_read_bloc.dart';
 import 'package:bibleapp/controllers/note_screen_controller/bloc/note_bloc.dart';
 import 'package:bibleapp/controllers/note_screen_controller/bloc/selector_book_or_note_bloc.dart';
 import 'package:bibleapp/controllers/plan_screen_controller/bloc/plan_bloc.dart';
+import 'package:bibleapp/models/bible/biblehive.dart';
+import 'package:bibleapp/models/note/bookmark.dart';
 import 'package:bibleapp/models/note/note.dart';
 import 'package:bibleapp/models/plan/plan.dart';
 import 'package:bibleapp/views/bible_screen/bible_page.dart';
@@ -21,8 +24,12 @@ void main() async{
   await Hive.initFlutter();
   Hive.registerAdapter(NoteAdapter());
   Hive.registerAdapter(PlanAdapter());
+  Hive.registerAdapter(BookmarkAdapter());
+  Hive.registerAdapter(BibleModelAdapter());
   Box<Note> notes = await Hive.openBox<Note>('notes');
   Box<Plan> plans = await Hive.openBox<Plan>('plans');
+  Box<Bookmark> bookmarks = await Hive.openBox<Bookmark>("bookmarks");
+  Box<BibleModel> bibles = await Hive.openBox<BibleModel>("bibles");
 
   runApp(
     // DevicePreview(
@@ -60,13 +67,16 @@ void main() async{
               create: (context) => SelectorBookOrNoteBloc(),
             ),
             BlocProvider<BookMarkBloc>(
-              create: (context) => BookMarkBloc(),
+              create: (context) => BookMarkBloc(bookmarkBox: bookmarks),
             ),
             BlocProvider<NoteBloc>(
               create: (context) => NoteBloc(noteBox: notes),
             ),
             BlocProvider<PlanBloc>(
               create: (context) => PlanBloc(planBox: plans),
+            ),
+            BlocProvider<PdfReadBloc>(
+              create: (context) => PdfReadBloc(bibleBox: bibles),
             ),
           ],
           child: const MaterialApp(

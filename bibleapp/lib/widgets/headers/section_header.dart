@@ -3,7 +3,7 @@ import 'package:bibleapp/models/chapter/chapter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../controllers/bible_reading_controller/bloc/bible_reading_bloc.dart';
+import 'package:bibleapp/controllers/bible_reading_controller/bloc/bible_reading_bloc.dart';
 
 class SectionHeader extends StatelessWidget {
   

@@ -10,14 +10,14 @@ class NoteBookmark extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BookMarkBloc, BookMarkState>(builder: (context, state) {
-      if (state.bookmark.isEmpty) {
+      if (state.bookmarks.isEmpty) {
         return Center(
           child: Text("No bookmarks added!"),
         );
       }
       return ListView.builder(
-        itemCount: 10 * state.bookmark.length,
-        itemBuilder: (context, index) => BookMarkCard(data: state.bookmark[0]),
+        itemCount: state.bookmarks.length,
+        itemBuilder: (context, index) => BookMarkCard(data: state.bookmarks[index]),
       );
     });
   }

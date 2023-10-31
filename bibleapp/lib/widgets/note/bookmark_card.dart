@@ -32,7 +32,7 @@ class BookMarkCard extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            Text(data.note),
+            Text(data.text),
           ],
         ),
       ),

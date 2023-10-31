@@ -1,20 +1,21 @@
-import 'package:bibleapp/models/chapter/chapter.dart';
+import 'package:hive/hive.dart';
 
+part 'section.g.dart';
+
+@HiveType(typeId: 3)
 class SectionModel {
+  @HiveField(0)
   final String name;
+
+  @HiveField(1)
   final int chapters;
+
+  @HiveField(2)
   final String link;
+
   SectionModel({
     required this.name,
     required this.chapters,
     required this.link,
   });
-
-  factory SectionModel.fromJson(Map<String, dynamic> json) {
-    return SectionModel(
-      name: json['name'],
-      chapters: json['sections'],
-      link: json['link'],
-    );
-  }
 }

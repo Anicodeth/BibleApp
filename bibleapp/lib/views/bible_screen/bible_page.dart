@@ -1,5 +1,7 @@
+import 'package:bibleapp/controllers/bible_reading_controller/pdf_reader_bloc/pdf_read_bloc.dart';
 import 'package:bibleapp/models/bible/bible.dart';
 import 'package:bibleapp/widgets/bible/bible_list.dart';
+import 'package:bibleapp/widgets/bible/pdf_viewer.dart';
 import 'package:bibleapp/widgets/bible/section.dart';
 import 'package:bibleapp/widgets/chapter/chapters.dart';
 import 'package:bibleapp/widgets/verse/verse.dart';
@@ -29,6 +31,10 @@ class BiblePage extends StatelessWidget {
   }
 }
 
+
+
+
+
 class getContents extends StatelessWidget {
   final state;
   const getContents({super.key, required this.state});
@@ -38,10 +44,19 @@ class getContents extends StatelessWidget {
     if (state is BiblesLoadedState) {
       return Bibles(bibles: state.bibles);
     } else if (state is SectionsLoadedState) {
-      return SectionList(
-        sections: state.sections,
-        bibleName: state.bibleName,
-      );
+      BlocProvider.of<PdfReadBloc>(context).add((ReadPdf(name: "bible", link: "https://www.africau.edu/images/default/sample.pdf")));
+      return PdfViewer(pdfName: "hello");
+
+      // Navigator.push(
+      //                 context,
+      //                 MaterialPageRoute(
+      //                   builder: (context) => PdfViewerPage(),
+      //                 ),
+      //               );
+      // return SectionList(
+      //   sections: state.sections,
+      //   bibleName: state.bibleName,
+      // );
     } else if (state is VersesLoadedState) {
       return Verses(
         verses: state.verses,
