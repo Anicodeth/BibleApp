@@ -11,6 +11,8 @@ class PlanTaskCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final int numberOfDays = plan.endDate.difference(plan.startDate).inDays;
+
     return Column(
       children: [
         Card(
@@ -31,7 +33,7 @@ class PlanTaskCard extends StatelessWidget {
                         style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
                         ),
                       Text(
-                        '${plan.endDate.day - plan.startDate.day} Days, ${plan.frequency}',
+                        '${numberOfDays} Days, ${plan.frequency}',
                         style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal, color: Color.fromARGB(255, 95, 95, 95)),
                       ),
                       Row(
@@ -44,8 +46,8 @@ class PlanTaskCard extends StatelessWidget {
                 CircularPercentIndicator(
                   radius: 40.0,
                   lineWidth: 8.0,
-                  percent: plan.progress,
-                  center: Text('${plan.progress * 100}%'),
+                  percent: plan.days.length/numberOfDays,
+                  center: Text((plan.days.length/numberOfDays * 100).toStringAsFixed(2) + "%"),
                   progressColor: Colors.green,
                 )
               ],

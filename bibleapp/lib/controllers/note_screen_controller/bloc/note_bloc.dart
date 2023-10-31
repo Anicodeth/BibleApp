@@ -20,11 +20,15 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
       
       if(event is AddNote){
 
-        await noteBox.add(event.note);
+        await noteBox.put(event.note.note + event.note.title, event.note);
         List<Note> notes = noteBox.values.toList();
-
         emit(NoteInitial(note: notes));
-
+      } 
+      
+      if(event is RemoveNote){
+        await noteBox.delete(event.note.note + event.note.title);
+        List<Note> notes = noteBox.values.toList();
+        emit(NoteInitial(note: notes));
       }
 
     });

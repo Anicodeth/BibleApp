@@ -27,7 +27,7 @@ void main() async{
   Hive.registerAdapter(BookmarkAdapter());
   Hive.registerAdapter(BibleModelAdapter());
   Box<Note> notes = await Hive.openBox<Note>('notes');
-  Box<Plan> plans = await Hive.openBox<Plan>('plans');
+  Box<Plan> plans = await Hive.openBox<Plan>('plan');
   Box<Bookmark> bookmarks = await Hive.openBox<Bookmark>("bookmarks");
   Box<BibleModel> bibles = await Hive.openBox<BibleModel>("bibles");
 

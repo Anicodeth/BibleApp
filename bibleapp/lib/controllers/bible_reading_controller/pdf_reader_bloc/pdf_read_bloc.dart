@@ -23,6 +23,16 @@ class PdfReadBloc extends Bloc<PdfReadEvent, PdfReadState> {
           File file = File(path);
           if (await file.exists()){
             emit(PdfLoaded(path: path));
+          }else{
+
+            final response = await _dio.get(event.link, options: Options(responseType: ResponseType.bytes));
+
+            final directory = await getApplicationDocumentsDirectory();
+            final filePath = '${directory.path + event.name + DateTime.now().toString()}.pdf';
+            File pdfFile = File(filePath);
+            await pdfFile.writeAsBytes(response.data, flush: true);
+            await bibleBox.put(event.name,BibleModel(name: event.name, path: filePath));
+            emit(PdfLoaded(path: filePath));
           }
 
         }else{
@@ -30,16 +40,15 @@ class PdfReadBloc extends Bloc<PdfReadEvent, PdfReadState> {
 
           final directory = await getApplicationDocumentsDirectory();
           final filePath = '${directory.path + event.name + DateTime.now().toString()}.pdf';
-          print("bible------${filePath}");
           File pdfFile = File(filePath);
           await pdfFile.writeAsBytes(response.data, flush: true);
           await bibleBox.put(event.name,BibleModel(name: event.name, path: filePath));
           emit(PdfLoaded(path: filePath));
         }
-
       }
-
 
     });
   }
+
+
 }

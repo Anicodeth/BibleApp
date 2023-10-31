@@ -60,7 +60,7 @@ class PlanView extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const PlanDetailView(),
+                        builder: (context) => PlanDetailView(plan: state.plans[index]),
                       ),
                     );
                   },
@@ -166,7 +166,7 @@ class PlanView extends StatelessWidget {
                                       frequency: frequencyWidget.selected,
                                       startDate: startDateController[0],
                                       endDate: endDateController[0],
-                                      progress: 0,
+                                      days: [],
                                       ),),);
 
                                 },

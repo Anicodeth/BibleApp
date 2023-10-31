@@ -18,7 +18,7 @@ class NoteNote extends StatelessWidget {
       }
       return ListView.builder(
         itemCount: state.note.length,
-        itemBuilder: (context, index) => NoteCard(data: state.note[index]),
+        itemBuilder: (context, index) => NoteCard(data: state.note[index], idx: index,),
       );
     });
   }

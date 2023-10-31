@@ -22,7 +22,7 @@ class PlanAdapter extends TypeAdapter<Plan> {
       frequency: fields[2] as String,
       startDate: fields[3] as DateTime,
       endDate: fields[4] as DateTime,
-      progress: fields[5] as double,
+      days: (fields[5] as List).cast<String>(),
     );
   }
 
@@ -41,7 +41,7 @@ class PlanAdapter extends TypeAdapter<Plan> {
       ..writeByte(4)
       ..write(obj.endDate)
       ..writeByte(5)
-      ..write(obj.progress);
+      ..write(obj.days);
   }
 
   @override

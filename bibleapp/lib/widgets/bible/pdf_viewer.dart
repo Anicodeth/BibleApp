@@ -77,7 +77,6 @@ class _PdfViewerState extends State<PdfViewer> {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text("Please select a text")));
                 }
                 
-                
               },
             ),
             IconButton(
@@ -184,17 +183,15 @@ class _PdfViewerState extends State<PdfViewer> {
                       flex: 3,
                       child: ElevatedButton(
                         onPressed: () {
-
                           BlocProvider.of<NoteBloc>(context).add(
                             AddNote(Note(
                               title: verseEditingControler.text, 
                               tag: versionEditingControler.text, 
                               date: DateTime.timestamp(),
                               note: noteEditingControler.text,
-                              ),),);
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text("Bookmarked")));
-                          // print(booksWidget.selectedBooks);
-                          // print(frequencyWidget.selected);
+                              )));
+                          print(verseEditingControler.text + noteEditingControler.text);
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text("Note taken")));
                         },
                         child: const Text("Done"),
                       ),

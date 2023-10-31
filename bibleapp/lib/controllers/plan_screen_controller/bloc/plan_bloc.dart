@@ -16,6 +16,32 @@ class PlanBloc extends Bloc<PlanEvent, PlanState> {
         await planBox.put(event.plan.title, event.plan);
         emit(PlansLoaded(plans: planBox.values.toList()));
       }
+
+      if (event is MarkAsDone){
+
+        Plan? plan = await planBox.get(event.title);
+        if (plan != null){
+          plan.days.add("day${event.dayidx}");
+          await planBox.put(event.title, plan);
+          emit(PlansLoaded(plans: planBox.values.toList()));
+        }
+      }
+
+      if (event is UndoMark){
+
+        Plan? plan = await planBox.get(event.title);
+        if (plan != null){
+          plan.days.remove("day${event.dayidx}");
+          await planBox.put(event.title, plan);
+          emit(PlansLoaded(plans: planBox.values.toList()));
+        }
+      }
+
+      if (event is DeletePlan){
+        planBox.delete(event.plan.title);
+        emit(PlansLoaded(plans: planBox.values.toList()));
+
+      }
       
     });
   }

@@ -4,6 +4,7 @@ import 'package:bibleapp/widgets/headers/bible_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
+import 'package:intl/intl.dart';
 
 import '../../controllers/bible_reading_controller/bloc/bible_reading_bloc.dart';
 
@@ -22,14 +23,15 @@ class Bibles extends StatelessWidget {
          Container(
 
             margin: EdgeInsets.only(top: screenHeight * 0.1),
-            padding: EdgeInsets.all(10),
-            width: 0.97 * screenWidth, // Set the width of the card
+            padding: EdgeInsets.all(screenWidth * 0.04),
+            width: 0.87 * screenWidth, // Set the width of the card
             constraints: BoxConstraints(maxHeight: 0.25 * screenHeight),
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Color.fromARGB(255, 21, 119, 199), Color.fromARGB(255, 132, 183, 235)], // Define your gradient colors
+                colors: [Color.fromARGB(255, 74, 121, 159),Color.fromRGBO(153, 170, 207, 1)], // Define your gradient colors
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
+                stops: [0.4, 1]
               ),
               borderRadius: BorderRadius.circular(10), // Set the border radius
             ),
@@ -39,7 +41,7 @@ class Bibles extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.all(5),
+                    padding: EdgeInsets.all(7),
                     decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.3),
                       borderRadius: BorderRadius.all(Radius.circular(5))
@@ -91,15 +93,27 @@ class Bibles extends StatelessWidget {
                 )
             ),
           ),
-
         Container(
+          width: screenWidth,
+          margin: EdgeInsets.only(top: screenHeight * 0.36, left: screenWidth * 0.07),
+          child: Text(
+              "Bible Versions",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  
+          ),
+        ),
+        Container(
+            width: 0.87 * screenWidth,
+             decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10)
+             ),
             margin: EdgeInsets.only(top:  screenHeight * 0.4),
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                crossAxisSpacing: 5,
-                mainAxisSpacing: 5,
-                childAspectRatio: 1.2,
+                crossAxisSpacing: screenWidth * 0.01,
+                mainAxisSpacing: screenWidth * 0.01,
+                childAspectRatio: 0.85,
                 ),
               scrollDirection: Axis.vertical,
               itemCount: bibles.length,
@@ -112,33 +126,22 @@ class Bibles extends StatelessWidget {
                                   bibles[index].sections, bibles[index].name));
                         },
                         child:
-                          Container(
-                            constraints: BoxConstraints.expand(),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(10)),
-                              color: Colors.transparent,
-                              image: DecorationImage(image: AssetImage('assets/images/images${index + 1}.jpg'))
-                            ),
-                            child: Column(
-                              // mainAxisAlignment: MainAxisAlignment.center,
-                              // children: [
-                              //   Text(
-                              //     bibles[index].name,
-                              //     style: const TextStyle(
-                              //         fontSize: 18,
-                              //         color: Colors.black,
-                              //         fontWeight: FontWeight.bold),
-                              //   ),
-                              //   SizedBox(height: 30,),
-                              //   Text(
-                              //     " ${bibles[index].sections.length} Sections",
-                              //     style: TextStyle(
-                              //       fontSize: 16,
-                              //       color: Colors.grey.shade700,
-                              //     ),
-                              //   ),
-                              // ],
-                            ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                width: screenWidth * 0.4,
+                                height: screenWidth * 0.4,
+                                constraints: BoxConstraints(maxHeight: screenWidth * 0.4,maxWidth: screenWidth * 0.4),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  color: Colors.transparent,
+                                  image: DecorationImage(image: AssetImage('assets/images/images${index + 1}.jpg'))
+                                ),
+                                child: Text("")
+                              ),
+                              Text(bibles[index].name)
+                            ],
                           ),
                       );
               },
@@ -146,4 +149,9 @@ class Bibles extends StatelessWidget {
       ],
     );
   }
+
+String formatDate(DateTime date) {
+  final formatter = DateFormat('MMMM d, y');
+  return formatter.format(date);
+}
 }

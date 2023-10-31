@@ -22,8 +22,8 @@ class Plan{
   final DateTime endDate;
 
   @HiveField(5)
-  final double progress;
+  final List<String> days;
 
-  Plan({required this.title, required this.books, required this.frequency, required this.startDate, required this.endDate, required this.progress});
+  Plan({required this.title, required this.books, required this.frequency, required this.startDate, required this.endDate, required this.days});
 
 }
